@@ -14,12 +14,12 @@ import 'react-dates/lib/css/_datepicker.css';
 
 const store = configureStore();
 
-store.dispatch(addExpense({ description: 'Water bill', amount: 200 }));
-store.dispatch(addExpense({ description: 'Gas bill', amount: 1000, createdAt: 30000 }));
-store.dispatch(addExpense({ description: 'Rent', amount: 4500 }));
+// store.dispatch(addExpense({ description: 'Water bill', amount: 200 }));
+// store.dispatch(addExpense({ description: 'Gas bill', amount: 1000, createdAt: 30000 }));
+// store.dispatch(addExpense({ description: 'Rent', amount: 4500 }));
 
-const state = store.getState();
-const visibleState = getVisibleExpenses(state.expenses, state.filters);
+// const state = store.getState();
+// const visibleState = getVisibleExpenses(state.expenses, state.filters);
 // console.log(visibleState);
 
 // Provider is going to allow us to provide the store to all of the components that make up our 
