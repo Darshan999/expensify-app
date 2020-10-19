@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import { addExpense } from './actions/expenses';
-import { setTextFilter } from './actions/filters';
-import getVisibleExpenses from './selectors/expenses';
+// import { addExpense } from './actions/expenses';
+// import { setTextFilter } from './actions/filters';
+// import getVisibleExpenses from './selectors/expenses';
 import './styles/styles.scss';
 // Reset the own style of each browser. All browser working off of that same base. We are going to see exact
 // same stuff in chrome, safari, IEEE
