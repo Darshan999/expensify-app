@@ -11,6 +11,7 @@ import './styles/styles.scss';
 // same stuff in chrome, safari, IEEE
 import 'normalize.css/normalize.css';
 import 'react-dates/lib/css/_datepicker.css';
+import './firebase/firebase';
 
 const store = configureStore();
 
