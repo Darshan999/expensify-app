@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import AppRouter from './routers/AppRouter';
+import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
-// import { addExpense } from './actions/expenses';
-// import { setTextFilter } from './actions/filters';
+import { startSetExpenses } from './actions/expenses';
+import { login, logout } from './actions/auth';
 // import getVisibleExpenses from './selectors/expenses';
 import './styles/styles.scss';
 // Reset the own style of each browser. All browser working off of that same base. We are going to see exact
 // same stuff in chrome, safari, IEEE
 import 'normalize.css/normalize.css';
 import 'react-dates/lib/css/_datepicker.css';
-import './firebase/firebase';
+import { firebase } from './firebase/firebase';
 
 const store = configureStore();
 
@@ -30,6 +30,32 @@ const jsx = (
     <Provider store={store}>
         <AppRouter />
     </Provider>
-)
+);
 
-ReactDOM.render(jsx, document.getElementById('root'));
+let hasRendered = false;
+
+const renderApp = () => {
+    if (!hasRendered) {
+        ReactDOM.render(jsx, document.getElementById('root'));
+        hasRendered = true;
+    }
+}
+
+
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        console.log('log in', user);
+        store.dispatch(login(user.uid));
+        // get All the expenses 
+        store.dispatch(startSetExpenses());
+        renderApp();
+        if (history.location.pathname === '/') {
+            history.push('/dashboard');
+        }
+    } else {
+        console.log('log out');
+        store.dispatch(logout());
+        renderApp();
+        history.push('/');
+    }
+})
